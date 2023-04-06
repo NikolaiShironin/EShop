@@ -1,0 +1,204 @@
+﻿<Page x:Class="EShop.Pages.PageTable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Height="800" Width="1500"
+      Title="Таблица" Background="WhiteSmoke">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="11*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ToolBar Height="45" VerticalAlignment="Top" Background="Orange">
+                <Image Source="/ResPhoto/Lupa.png" Height="33"/>
+                <TextBox Name="TxtSearch" Foreground="White" FontSize="18" Height="34" Width="170" TextChanged="TxtSearch_TextChanged" Margin="10,0,0,0"></TextBox>
+                <Menu Height="34" Margin="35,0,0,0" Background="Orange">
+                    <MenuItem Header="Таблица" Foreground="White" FontSize="25" VerticalAlignment="Center">
+                        <MenuItem.Icon>
+                            <Image Source="/ResPhoto/Table.png" Margin="-20,-10,-13,-10"></Image>
+                        </MenuItem.Icon>
+                        <MenuItem Header="Очистить" 
+                          Click="BtnClearAll_Click" Foreground="Black"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Просмотр" Foreground="White" FontSize="25" VerticalAlignment="Center">
+                        <MenuItem.Icon>
+                            <Image Source="/ResPhoto/Search.png" Margin="-20,-9,-16,-9"></Image>
+                        </MenuItem.Icon>
+                        <MenuItem Header="Товары" 
+                          Name="ToListGoods" Click="ToListGoods_Click"  Foreground="Black"></MenuItem>
+                        <MenuItem Header="Филиалы" 
+                          Name="ToListStore" Click="ToListStore_Click"  Foreground="Black"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Добавить запись в таблицу" Foreground="White" FontSize="25" VerticalAlignment="Center">
+                        <MenuItem.Icon>
+                            <Image Source="/ResPhoto/Plus.png" Margin="-9,-10,-6,-8"></Image>
+                        </MenuItem.Icon>
+                        <MenuItem Header="Категории товаров" 
+                          Click="BtnToCategory_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Клиенты" 
+                          Click="BtnToClient_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Доставка" 
+                          Click="BtnToDelivery_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Доставщики" 
+                          Click="BtnToDeliveryEmployee_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Товары" 
+                          Click="BtnToGoods_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Заказы" 
+                          Click="BtnToOrders_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Заказы-Товары" 
+                          Click="BtnToOrders_Goods_Click" Foreground="Black"></MenuItem>
+                        <MenuItem Header="Магазины" 
+                          Click="BtnToStoreClick" Foreground="Black"></MenuItem>
+                    </MenuItem>
+                </Menu>
+            </ToolBar>
+        </StackPanel>
+        <DataGrid ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                  RowStyle="{DynamicResource DataGridRowStyle}"
+                  x:Name="DGridOrders"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  Margin="0,45,0,0" Height="400" VerticalAlignment="Top" Width="1485"
+                  HorizontalAlignment="Left">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                        Header="№" Width="50" 
+                        Binding="{Binding Orders.OrdersID}"/>
+                <DataGridTextColumn
+                        Header="Адресс магазина" Width="150"
+                        Binding="{Binding Orders.Store.Adress}"/>
+                <DataGridTextColumn
+                        Header="Почта" Width="155"
+                        Binding="{Binding Orders.Store.EMail}"/>
+                <DataGridTextColumn
+                        Header="Категория товара" Width="*"
+                        Binding="{Binding Goods.Category.CName}"/>
+                <DataGridTextColumn
+                        Header="Название товара" Width="100"
+                        Binding="{Binding Goods.GName}"/>
+                <DataGridTextColumn
+                        Header="Цена" Width="71"
+                        Binding="{Binding Goods.Price}"/>
+                <DataGridTextColumn
+                        Header="Кол-во" Width="50"
+                        Binding="{Binding Quantity}"/>
+                <DataGridTextColumn
+                        Header="Тип получения" Width="92"
+                        Binding="{Binding Orders.WayToGet.Type}"/>
+                <DataGridTextColumn
+                        Header="Адресс получателя" Width="*"
+                        Binding="{Binding Orders.Delivery.Adress}"/>
+                <DataGridTextColumn
+                        Header="ФИО клиента" Width="*"
+                        Binding="{Binding Orders.Client.FIO}"/>
+                <DataGridTextColumn
+                        Header="ФИО Доставщика" Width="*"
+                        Binding="{Binding Orders.Delivery.DeliveryEmployee.FIOEmployee}"/>
+                <DataGridTextColumn
+                        Header="Номер клиента" Width="*"
+                        Binding="{Binding Orders.Client.PhoneNumber}"/>
+                <DataGridTextColumn
+                        Header="Статус заказа" Width="118"
+                        Binding="{Binding Orders.Status.SName}"/>
+                <DataGridTextColumn
+                        Header="Дата Реализации заказа" Width="178"
+                        Binding="{Binding Orders.DateTime}"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <Button Name="BtnEdit"
+                                    Click="BtnEdit_Click"
+                                    Width="23"
+                                    Height="23"
+                                    Style="{StaticResource BorderlessButton}">
+                                    <Image Source="\ResPhoto\Redak.png" Stretch="Fill"></Image>
+                                </Button>
+                                <Button Name="BtnDelete"
+                                    Click="BtnDelete_Click"
+                                    Width="23"
+                                    Height="23"
+                                    Style="{StaticResource BorderlessButton}">
+                                    <Image Source="\ResPhoto\Delete.png" Stretch="Fill"></Image>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <TextBlock Text="№ Заказа" FontSize="15" HorizontalAlignment="Center"/>
+            <ComboBox x:Name="OrderSelect" FontSize="15">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+                <ComboBoxItem>11</ComboBoxItem>
+                <ComboBoxItem>12</ComboBoxItem>
+                <ComboBoxItem>13</ComboBoxItem>
+                <ComboBoxItem>14</ComboBoxItem>
+                <ComboBoxItem>15</ComboBoxItem>
+                <ComboBoxItem>16</ComboBoxItem>
+                <ComboBoxItem>17</ComboBoxItem>
+                <ComboBoxItem>18</ComboBoxItem>
+                <ComboBoxItem>19</ComboBoxItem>
+                <ComboBoxItem>20</ComboBoxItem>
+                <ComboBoxItem>21</ComboBoxItem>
+                <ComboBoxItem>22</ComboBoxItem>
+                <ComboBoxItem>23</ComboBoxItem>
+                <ComboBoxItem>24</ComboBoxItem>
+                <ComboBoxItem>25</ComboBoxItem>
+                <ComboBoxItem>26</ComboBoxItem>
+                <ComboBoxItem>27</ComboBoxItem>
+                <ComboBoxItem>28</ComboBoxItem>
+                <ComboBoxItem>29</ComboBoxItem>
+                <ComboBoxItem>30</ComboBoxItem>
+                <ComboBoxItem>31</ComboBoxItem>
+                <ComboBoxItem>32</ComboBoxItem>
+                <ComboBoxItem>33</ComboBoxItem>
+                <ComboBoxItem>34</ComboBoxItem>
+                <ComboBoxItem>35</ComboBoxItem>
+                <ComboBoxItem>36</ComboBoxItem>
+                <ComboBoxItem>37</ComboBoxItem>
+                <ComboBoxItem>38</ComboBoxItem>
+                <ComboBoxItem>39</ComboBoxItem>
+                <ComboBoxItem>40</ComboBoxItem>
+                <ComboBoxItem>41</ComboBoxItem>
+                <ComboBoxItem>42</ComboBoxItem>
+                <ComboBoxItem>43</ComboBoxItem>
+                <ComboBoxItem>44</ComboBoxItem>
+                <ComboBoxItem>45</ComboBoxItem>
+            </ComboBox>
+            <Button
+                Width="100"
+                Height="100"
+                Background="White"
+                Margin="0,10,0,0"
+                BorderBrush="#245398"
+                BorderThickness="3"
+                Name="BtnWord"
+                Click="BtnWord_Click">
+                <Image Source="\ResPhoto\Word.png" Stretch="Fill" HorizontalAlignment="Center"></Image>
+            </Button>
+            <Button
+                Width="100"
+                Height="100"
+                Background="White"
+                Margin="0,10,0,0"
+                BorderBrush="Green"
+                BorderThickness="3"
+                Name="BtnExcel"
+                Click="BtnExcel_Click">
+                <Image Source="\ResPhoto\Excel.png" Stretch="Fill" HorizontalAlignment="Center"></Image>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

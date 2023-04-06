@@ -1,0 +1,84 @@
+﻿<Page x:Class="EShop.Pages.PageEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EShop.Pages"
+      mc:Ignorable="d" 
+       d:DesignHeight="800" d:DesignWidth="1500" Background="Orange"
+      Title="PageEdit">
+
+    <Grid>
+        <Border Height="650" Width="800" CornerRadius="30" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" >
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Purple" ShadowDepth="0">
+                </DropShadowEffect>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Редактирование" FontSize="30" FontWeight="Bold"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Номер заказа" Height="35" FontSize="20"/>
+                    <TextBlock Text="Адресс магазина" Height="35" FontSize="20"/>
+                    <TextBlock Text="Электронная Почта магазина" Height="35" FontSize="20"/>
+                    <TextBlock Text="Категория товара" Height="35" FontSize="20"/>
+                    <TextBlock Text="Название товара" Height="35" FontSize="20"/>
+                    <TextBlock Text="Цена" Height="35" FontSize="20"/>
+                    <TextBlock Text="Кол-во Товара" Height="35" FontSize="20"/>
+                    <TextBlock Text="Тип получения" Height="35" FontSize="20"/>
+                    <TextBlock Text="Адресс получателя" Height="35" FontSize="20"/>
+                    <TextBlock Text="ФИО клиента" Height="35" FontSize="20"/>
+                    <TextBlock Text="ФИО Доставщика" Height="35" FontSize="20"/>
+                    <TextBlock Text="Номер клиента" Height="35" FontSize="20"/>
+                    <TextBlock Text="Статус заказа" Height="35" FontSize="20"/>
+                    <TextBlock Text="Дата формирования заказа" Height="35" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+        <ComboBox Name="CmbOrdersID"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbStoreAdress"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbEMail"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbCName"
+                 SelectedValue="{Binding GoodsID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbGName"
+                 SelectedValue="{Binding GoodsID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbPrice"
+                 SelectedValue="{Binding GoodsID}" FontSize="20" Height="35"/>
+        <TextBox Name="TxtQuantity"
+                 Text="{Binding Quantity}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbType"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbAdress"
+                  SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbFIO"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbFIOEmployee"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbPhoneNumber"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbSName"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+        <ComboBox Name="CmbDateTime"
+                 SelectedValue="{Binding OrdersID}" FontSize="20" Height="35"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+                    <Button Content="Сохранить"
+                Width="150"
+                Height="30"
+                Name="BtnSave"
+                Click="BtnSave_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

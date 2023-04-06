@@ -1,0 +1,18 @@
+public partial class EStoreEntities : DbContext
+    {
+        private static EStoreEntities _Context;
+        public EStoreEntities()
+            : base("name=EStoreEntities")
+        {
+        }
+
+        public static EStoreEntities GetContext()
+        {
+            if (_Context == null)
+                _Context = new EStoreEntities();
+            return _Context;
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
